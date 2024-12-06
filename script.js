@@ -11,3 +11,34 @@ function updateCounter() {
 }
 
 setInterval(updateCounter, 1000);
+
+document.addEventListener("DOMContentLoaded", () => {
+    const depoimentos = document.querySelectorAll(".depoimento");
+    let indiceAtual = 0;
+
+    function alternarDepoimento() {
+        depoimentos[indiceAtual].classList.remove("depoimento-ativo");
+        indiceAtual = (indiceAtual + 1) % depoimentos.length;
+        depoimentos[indiceAtual].classList.add("depoimento-ativo");
+    }
+    setInterval(alternarDepoimento, 5000);
+});
+
+// Seleciona o menu principal e o submenu
+const menuCategorias = document.querySelector('.menu-categorias');
+const submenu = document.querySelector('.categorias');
+
+// Adiciona evento de clique para mostrar/esconder o submenu
+menuCategorias.addEventListener('click', (event) => {
+    event.preventDefault(); // Impede o comportamento padrão do link
+    submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
+});
+
+// Fecha o submenu ao clicar fora dele
+document.addEventListener('click', (event) => {
+    if (!menuCategorias.contains(event.target)) {
+        submenu.style.display = 'none';
+    }
+});
+
+
